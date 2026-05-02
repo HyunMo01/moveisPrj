@@ -1,0 +1,24 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 로컬 개발용: 배포 전 반드시 인증·검증 규칙으로 바꾸세요.
+    match /movies/{movieId} {
+      allow read: if true;
+      allow create: if true;
+      allow update: if true;
+      allow delete: if true;
+      match /comments/{commentId} {
+        allow read: if true;
+        allow create: if true;
+        allow delete: if true;
+      }
+    }
+
+    match /images/{imageId} {
+      allow read: if true;
+      allow create: if true;
+      allow update: if true;
+      allow delete: if true;
+    }
+  }
+}
